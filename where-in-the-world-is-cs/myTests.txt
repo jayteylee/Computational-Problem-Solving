@@ -1,0 +1,22 @@
+      51.503272, -0.034930 London   
+52.4862 -1.8904 Burmingham
+31.9505 S 115.8605 Perth
+-36.946379, 174.740649 Auckland   
+    19.4326 n, 99.1332 w Mexico_City
+126.579123 e, 33.410810 n Jeju-do
+48.823503 n, 2.381654 E Paris 
+22.3193 N 114.1694 E Hong_Kong
+        135.5022 E 34.6937 N Osaka
+    86.791116723 W 32.80675436712 N Alabama 
+33° 51.4 S 151° 12.6' E Sydney
+            77° 1.2' w 12 2.8' S Peru
+42° 28.6' S 73° 45.3' W Castro
+        43° 12' 0" W 22° 54' 0" S Rio_de_janeiro
+55 45 0 N 37 37 0 E Moscow
+51 44' 0" W 64° 10 0 N Nuuk
+    17° 49' 0" S 31° 2' 0" E Zimbabwe
+59° 13' 44.9616'' W 51° 52' 54.8976'' S Falkland_Islands
+40 d 26 m 46 s N, 79 d 58 m 56 s W Pittsburgh
+45°52 01.6"S 170°31'04.1 E Owheo
+26.8206 30.8025 E Egypt
+34.0522 118.2437 W Los_Angeles 

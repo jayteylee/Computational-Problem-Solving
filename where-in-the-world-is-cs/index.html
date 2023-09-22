@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GeoJSON Map Visualization</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+
+<body>
+  <h1>Where In The World is CS?</h1>
+  <div class="container">
+    <form id="file-form">
+      <input type="file" id="file-input" accept=".txt" />
+    </form>
+      <div id="map"></div>
+  </div>
+  <script src="convertToGeoJSON.js"></script>
+</body>
+
+</html>

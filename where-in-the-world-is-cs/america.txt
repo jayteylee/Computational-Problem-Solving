@@ -1,0 +1,6 @@
+    19.4326 n, 99.1332 w Mexico_City
+    40 d 26 m 46 s N, 79 d 58 m 56 s W Pittsburgh
+    34.0522 118.2437 W Los_Angeles 
+        86.791116723 W 32.80675436712 N Alabama 
+61° 13' 45" N 149° 53' 3" W Anchorage
+58° 18' 11" N 134° 25' 8" W Juneau

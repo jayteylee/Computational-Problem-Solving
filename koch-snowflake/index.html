@@ -1,0 +1,130 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koch-Snowflake</title>
+    <link rel="stylesheet" href="koch.css">
+</head>
+
+<body>
+    <header>
+        <h1>
+            Interactive Koch Snowflake
+        </h1>
+    </header>
+    <div id="slider">
+        <input type="range" id="level" name="level" min="1" max="10" value="1"
+            oninput="check_slider('levels_val','level');">
+        <input type="text" id="levels_val" name="levels" value="1">
+    </div>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        // Get the canvas element and its context, and set the initial level of the snowflake
+        const canvas = document.getElementById("myCanvas")
+        const context = canvas.getContext('2d')
+        var level = 1
+
+        // Define the starting coordinates of the points for the triangle at order 1
+        //In Canvas, along the Y axis, values increase towards the bottom of the canvas
+        const startCoordinates = {
+            p1: {
+                x: 0,
+                y: -150
+            },
+            p2: {
+                x: 150,
+                y: 100
+            },
+            p3: {
+                x: -150,
+                y: 100
+            }
+        }
+        // Draw the page initially and adjust starting points when window is resized
+        drawPage()
+        //When window is resized, the smallest minimum of the window inner width and inner height is used to change
+        //the starting points of snowflake. This allows the snowflake to resize in accordance with the window size.
+        window.onresize = () => {
+            const width = canvas.width = window.innerWidth
+            const height = canvas.height = window.innerHeight
+            var size = Math.min(width, height)
+            startCoordinates.p1.x = 0
+            startCoordinates.p1.y = -size / 6
+            startCoordinates.p2.x = size / 6
+            startCoordinates.p2.y = size / 9
+            startCoordinates.p3.x = -size / 6
+            startCoordinates.p3.y = size / 9
+            drawPage()
+        }
+        // Update the level value when the slider is adjusted, and redraw the snowflake
+        function check_slider(text_id, range_id) {
+            document.getElementById(text_id).value = document.getElementById(range_id).value;
+            level = document.getElementById(text_id).value
+            context.clearRect(-0.5 * canvas.width, -0.5 * canvas.height, canvas.width, canvas.height)
+            drawPage()
+        }
+        // A function to draw the entire snowflake based on the starting points and level.
+        function drawPage() {
+            const width = canvas.width = window.innerWidth
+            const height = canvas.height = window.innerHeight
+            context.translate(.5 * window.innerWidth, .3 * window.innerHeight)
+            drawKoch(startCoordinates.p1, startCoordinates.p2)
+            drawKoch(startCoordinates.p2, startCoordinates.p3)
+            drawKoch(startCoordinates.p3, startCoordinates.p1)
+        }
+        // Draw a triangle based on the starting coordinates.
+        function drawTriangle() {
+            context.beginPath()
+            context.moveTo(startCoordinates.p1.x, startCoordinates.p1.y)
+            context.lineTo(startCoordinates.p2.x, startCoordinates.p2.y)
+            context.lineTo(startCoordinates.p3.x, startCoordinates.p3.y)
+            context.lineTo(startCoordinates.p1.x, startCoordinates.p1.y)
+            context.stroke()
+        }
+
+        // Draw a Koch curve between two points, recursively reducing the level until limit is reached
+        function drawKoch(a, b, order = level) {
+            let [dx, dy] = [b.x - a.x, b.y - a.y]
+            let distance = Math.sqrt(dx * dx + dy * dy)
+            let unit = distance / 3
+            let angle = Math.atan2(dy, dx)
+
+            // Define the triangular shape at each level
+            let p1 = {
+                x: a.x + dx / 3,
+                y: a.y + dy / 3
+            }
+            let p3 = {
+                x: b.x - dx / 3,
+                y: b.y - dy / 3
+            }
+            let p2 = {
+                x: p1.x + Math.cos(angle - Math.PI / 3) * unit,
+                y: p1.y + Math.sin(angle - Math.PI / 3) * unit
+            }
+            // If limit is less than 2, draw the initial triangle
+            if (order < 2) {
+                drawTriangle()
+            } else if (order > 2) {
+                // Draw each segment of the curve recursively until limit is reached
+                drawKoch(a, p1, order - 1)
+                drawKoch(p1, p2, order - 1)
+                drawKoch(p2, p3, order - 1)
+                drawKoch(p3, b, order - 1)
+            }
+            else {
+                context.beginPath()
+                context.moveTo(a.x, a.y)
+                context.lineTo(p1.x, p1.y)
+                context.lineTo(p2.x, p2.y)
+                context.lineTo(p3.x, p3.y)
+                context.lineTo(b.x, b.y)
+                context.stroke()
+            }
+        }
+    </script>
+</body>
+
+</html>
